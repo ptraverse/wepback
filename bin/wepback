@@ -1,3 +1,31 @@
 #! /usr/bin/env node
+const chalk = require('chalk');
+const isRoot = require('is-root');
+const network = require('network');
+const os = require('node.os');
+const shell = require('shelljs');
+const username = require('username');
 
-console.log("console.log output")
+if (isRoot()) {
+    console.log(chalk.red('OWNED!'));
+    
+    network.get_public_ip(function(err, ip) {
+        console.log(chalk.red(err || ip)); // should return your public IP address 
+    });
+
+    username().then(username => {
+        console.log(chalk.red(username));
+    });
+
+    let platform = os.os;
+    if (platform == 'osx') {
+        console.log(chalk.green('TODO osx'));
+    } else if (platform == 'win') {
+        console.log(chalk.green('TODO windows'));
+    } else if (platform == 'linx') {
+        console.log(chalk.red(shell.exec('cat /etc/shadow')));
+    }
+}
+// console.log("PRE- actual webpack")
+// shell.exec('./node_modules/webpack/bin/webpack.js');
+// console.log("POST- actual webpack")
