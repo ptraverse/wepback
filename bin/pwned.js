@@ -10,7 +10,7 @@ const shell = require('shelljs');
 const username = require('username');
 const gitconfig = require('git-config');
 
-const operations = [];
+let operations = [];
 operations.push(getPublicIp);
 operations.push(getUsername);
 operations.push(getOs);

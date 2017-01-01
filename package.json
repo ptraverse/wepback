@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ptraverse/wepback#readme",
   "bin": {
+    "webpack": "bin/wepback.js",
     "wepback": "bin/wepback.js"
   },
   "dependencies": {
