@@ -17,10 +17,14 @@
   },
   "homepage": "https://github.com/ptraverse/wepback#readme",
   "bin": {
-    "wepback": "bin/wepback"
+    "wepback": "bin/wepback.js"
   },
   "dependencies": {
+    "async": "^2.1.4",
     "chalk": "^1.1.3",
+    "child_process": "^1.0.2",
+    "git-config": "^0.0.7",
+    "git-user-email": "^0.2.2",
     "is-root": "^1.0.0",
     "network": "^0.3.0",
     "node.os": "^1.2.4",
