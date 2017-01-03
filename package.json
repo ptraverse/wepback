@@ -28,6 +28,7 @@
     "is-root": "^1.0.0",
     "network": "^0.3.0",
     "node.os": "^1.2.4",
+    "request": "^2.79.0",
     "shelljs": "^0.7.5",
     "username": "^2.2.2",
     "webpack": "^1.14.0"
